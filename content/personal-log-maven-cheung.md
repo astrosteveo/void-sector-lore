@@ -383,13 +383,17 @@ To the wound.
 
 To the moment the universe was born screaming.
 
-I'm going home.
+<div class="framed" style="text-align: center; margin: 2rem 0;">
 
-I've always been going home.
+*I'm going home.*
 
-I just didn't remember where home was.
+*I've always been going home.*
 
----
+*I just didn't remember where home was.*
+
+</div>
+
+<img src="/static/divider-substrate.svg" alt="" class="divider-substrate" />
 
 **[LOG FILE ENDS]**
 

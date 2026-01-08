@@ -158,6 +158,13 @@ hr {
     color: $vs-orange;
     animation: pulse-warning 2s ease-in-out infinite;
   }
+
+  &--recovered {
+    background: rgba(153, 102, 255, 0.15);
+    border: 1px solid #9966ff;
+    color: #9966ff;
+    box-shadow: 0 0 10px rgba(153, 102, 255, 0.2);
+  }
 }
 
 @keyframes pulse-warning {

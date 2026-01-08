@@ -10,10 +10,14 @@ tags:
 
 # Timeline
 
+<div class="framed" style="text-align: center; margin: 2rem 0;">
+
 > *"At what point does 'isolated case' become 'pattern'?"*
 > — [[characters/dr-helena-sarr|Dr. Helena Sarr]]
 
----
+</div>
+
+<img src="/static/divider-circuit.svg" alt="" class="divider-circuit" />
 
 ## The Beginning
 
@@ -137,32 +141,42 @@ tags:
 | 52-Omicron | 2 | 10.5% |
 | **Total** | **19** | 100% |
 
----
+<img src="/static/divider-substrate.svg" alt="" class="divider-substrate" />
 
 ## The 03:47 Pattern
 
-The timestamp **03:47** appears repeatedly across incidents:
+<div style="text-align: center; font-size: 2rem; color: var(--vs-danger); margin: 1.5rem 0; font-family: 'JetBrains Mono', monospace;">
+
+**03:47**
+
+</div>
+
+The timestamp appears repeatedly across incidents:
 
 - Maven Cheung's clock frozen at 03:47
 - Maven Cheung woke at 03:47, clock didn't move for 20+ minutes
 - Whistleblower message sent at 03:47 SST
 - Contact protocol references "03:47 shuttle"
 
-Significance: **Unknown**
+Significance: <span class="redacted">Unknown</span>
 
 ---
 
 ## What Comes Next?
 
+<div class="framed">
+
 The whistleblower's projection:
 
 > *"If incident rate continues at current trajectory, we will reach* **thirty incidents** *by end of fiscal year."*
 
-The Guild's response:
-- New operations approved in [[locations/sector-33-mu|Sector 33-Mu]]
-- 2M credits allocated for contractor recruitment
-- Lobbying against new Void Sector regulations
-- **No changes to extraction protocols**
+</div>
+
+> [!danger] The Guild's Response
+> - New operations approved in [[locations/sector-33-mu|Sector 33-Mu]]
+> - 2M credits allocated for contractor recruitment
+> - Lobbying against new Void Sector regulations
+> - **No changes to extraction protocols**
 
 ---
 
