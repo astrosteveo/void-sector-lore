@@ -8,7 +8,7 @@ tags:
 
 <div class="framed" style="text-align: center; margin-bottom: 2rem;">
 
-![Void Sector](/static/void-sector-logo.svg)
+![Void Sector](static/void-sector-logo.svg)
 
 </div>
 
@@ -41,7 +41,7 @@ New to the archive? Read these first:
 
 ## Documents
 
-<img src="/static/divider-circuit.svg" alt="" class="divider-circuit" />
+<img src="static/divider-circuit.svg" alt="" class="divider-circuit" />
 
 ### Primary Sources
 
@@ -61,7 +61,7 @@ New to the archive? Read these first:
 
 ## Characters
 
-<img src="/static/divider-substrate.svg" alt="" class="divider-substrate" />
+<img src="static/divider-substrate.svg" alt="" class="divider-substrate" />
 
 | Character | Role | Status |
 |-----------|------|--------|
@@ -128,7 +128,7 @@ From [[the-leak-encrypted-message|the whistleblower]]:
 
 <div style="text-align: center; margin-top: 3rem;">
 
-![](/static/void-icon.svg){width=80}
+![](static/void-icon.svg){width=80}
 
 </div>
 
