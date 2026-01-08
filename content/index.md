@@ -29,7 +29,7 @@ New to the archive? Read these first:
 
 1. **[[the-fracture|The Fracture]]** — Understand what Void Sectors are and where substrate comes from
 2. **[[personal-log-maven-cheung|Maven Cheung's Log]]** — Experience what happens to miners firsthand
-3. **[[incident-report-7743|Incident Report #7743]]** — See how the Guild covers it up
+3. **[[incident-report-7743|Incident Report 7743]]** — See how the Guild covers it up
 4. **[[board-meeting-minutes-2407-01-15|Board Meeting Minutes]]** — Watch them vote against investigation
 5. **[[the-leak-encrypted-message|The Leak]]** — Read the whistleblower's warning
 
@@ -43,7 +43,7 @@ New to the archive? Read these first:
 |----------|------|----------------|
 | [[the-fracture\|The Fracture]] | Lore | Public |
 | [[personal-log-maven-cheung\|Personal Log: Maven Cheung]] | Recovered | Public |
-| [[incident-report-7743\|Incident Report #7743]] | Official Report | Restricted |
+| [[incident-report-7743\|Incident Report 7743]] | Official Report | Restricted |
 | [[board-meeting-minutes-2407-01-15\|Board Meeting Minutes]] | Corporate | **LEAKED** |
 | [[the-leak-encrypted-message\|The Leak]] | Whistleblower | Encrypted |
 
