@@ -591,6 +591,357 @@ const scheduleAmbientGlitch = () => {
 }
 
 // ───────────────────────────────────────────────────────────────────────────
+// WHISPERS IN THE MARGINS
+// ───────────────────────────────────────────────────────────────────────────
+
+const WHISPERS = [
+  "maven",
+  "03:47",
+  "it sees you",
+  "don't look",
+  "substrate",
+  "0,0,0",
+  "they never left",
+  "acceptable loss",
+  "still transmitting",
+  "coordinates locked",
+  "signal origin",
+  "trulli went dark",
+  "the wound",
+  "you were warned",
+  "MC-4477",
+  "isolation",
+  "resonance",
+  "extraction complete",
+  "cargo missing",
+  "black box corrupted"
+]
+
+const addWhispers = () => {
+  if (exposure.level < 12) return
+
+  // Remove old whispers
+  document.querySelectorAll(".margin-whisper").forEach(w => w.remove())
+
+  const whisperCount = Math.floor((exposure.level - 12) / 4) + 1
+  const article = document.querySelector("article")
+  if (!article) return
+
+  for (let i = 0; i < whisperCount; i++) {
+    if (Math.random() < 0.4) {
+      const whisper = document.createElement("div")
+      whisper.className = "margin-whisper"
+      whisper.textContent = WHISPERS[Math.floor(Math.random() * WHISPERS.length)]
+      whisper.style.top = `${10 + Math.random() * 80}%`
+      whisper.style.animationDelay = `${Math.random() * 5}s`
+
+      // Left or right margin
+      if (Math.random() < 0.5) {
+        whisper.classList.add("whisper-left")
+      } else {
+        whisper.classList.add("whisper-right")
+      }
+
+      article.appendChild(whisper)
+    }
+  }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// GHOST TABLE ENTRIES
+// ───────────────────────────────────────────────────────────────────────────
+
+const GHOST_MINERS = [
+  { name: "Yuki Tanaka", permit: "MC-2891", status: "Missing", sector: "19-Kappa" },
+  { name: "Dmitri Volkov", permit: "MC-5523", status: "Missing", sector: "33-Mu" },
+  { name: "Sarah Chen", permit: "MC-1147", status: "Signal Lost", sector: "19-Kappa" },
+  { name: "Marcus Webb", permit: "MC-8834", status: "Unrecovered", sector: "Unknown" },
+  { name: "[REDACTED]", permit: "MC-0347", status: "???", sector: "0,0,0" }
+]
+
+const addGhostEntries = () => {
+  if (exposure.level < 18) return
+
+  const tables = document.querySelectorAll("article table")
+  tables.forEach(table => {
+    if (Math.random() < 0.3 && !table.classList.contains("ghost-added")) {
+      const tbody = table.querySelector("tbody") || table
+      const ghost = GHOST_MINERS[Math.floor(Math.random() * GHOST_MINERS.length)]
+
+      const row = document.createElement("tr")
+      row.className = "ghost-row"
+      row.innerHTML = `
+        <td>${ghost.name}</td>
+        <td>${ghost.permit}</td>
+        <td><span class="badge badge--missing">${ghost.status}</span></td>
+      `
+
+      // Insert at random position
+      const rows = tbody.querySelectorAll("tr")
+      if (rows.length > 1) {
+        const insertIndex = 1 + Math.floor(Math.random() * (rows.length - 1))
+        rows[insertIndex].parentNode?.insertBefore(row, rows[insertIndex])
+      }
+
+      table.classList.add("ghost-added")
+
+      // Ghost row disappears on scroll
+      const removeGhost = () => {
+        row.classList.add("ghost-fade")
+        setTimeout(() => row.remove(), 500)
+        window.removeEventListener("scroll", removeGhost)
+      }
+      setTimeout(() => {
+        window.addEventListener("scroll", removeGhost, { once: true })
+      }, 2000)
+    }
+  })
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// LINK MISDIRECTION
+// ───────────────────────────────────────────────────────────────────────────
+
+const MISDIRECT_PAGES = [
+  "/concepts/substrate",
+  "/the-fracture",
+  "/personal-log-maven-cheung",
+  "/purge"
+]
+
+const setupLinkMisdirection = () => {
+  if (exposure.level < 16) return
+
+  document.querySelectorAll("a.internal").forEach(link => {
+    if (link.classList.contains("misdirect-setup")) return
+    link.classList.add("misdirect-setup")
+
+    link.addEventListener("click", (e) => {
+      // 1 in 30 chance of misdirection at level 16, increases with level
+      const misdirectChance = (exposure.level - 16) * 0.01 + 0.03
+      if (Math.random() < misdirectChance) {
+        e.preventDefault()
+        e.stopPropagation()
+
+        const wrongPage = MISDIRECT_PAGES[Math.floor(Math.random() * MISDIRECT_PAGES.length)]
+
+        // Flash wrong page briefly
+        document.documentElement.classList.add("misdirect-glitch")
+
+        // Show a flash of the wrong destination
+        const flash = document.createElement("div")
+        flash.className = "misdirect-flash"
+        flash.textContent = wrongPage.toUpperCase()
+        document.body.appendChild(flash)
+
+        setTimeout(() => {
+          document.documentElement.classList.remove("misdirect-glitch")
+          flash.remove()
+          // Actually navigate to correct destination
+          const href = (link as HTMLAnchorElement).href
+          if (href) window.location.href = href
+        }, 400)
+      }
+    })
+  })
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// "YOU ARE NOT ALONE" - OTHER TERMINAL FLASHES
+// ───────────────────────────────────────────────────────────────────────────
+
+const generateOtherTerminalId = (): string => {
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
+  return "VS-" + Array.from({ length: 4 }, () => chars[Math.floor(Math.random() * chars.length)]).join("")
+}
+
+const showOtherTerminal = () => {
+  if (exposure.level < 20) return
+
+  const otherId = generateOtherTerminalId()
+  const messages = [
+    `${otherId} WAS HERE`,
+    `${otherId} [SIGNAL LOST]`,
+    `TERMINAL ${otherId} DETECTED`,
+    `${otherId} IS WATCHING`,
+    `${otherId} [STATUS: UNKNOWN]`
+  ]
+
+  const flash = document.createElement("div")
+  flash.className = "other-terminal-flash"
+  flash.textContent = messages[Math.floor(Math.random() * messages.length)]
+  document.body.appendChild(flash)
+
+  setTimeout(() => {
+    flash.classList.add("fade-out")
+    setTimeout(() => flash.remove(), 500)
+  }, 1500)
+}
+
+const scheduleOtherTerminalFlash = () => {
+  if (exposure.level < 20) return
+
+  const delay = 30000 + Math.random() * 60000 // 30-90 seconds
+
+  setTimeout(() => {
+    if (exposure.level >= 20 && Math.random() < 0.4) {
+      showOtherTerminal()
+    }
+    scheduleOtherTerminalFlash()
+  }, delay)
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// BROWSER TITLE CORRUPTION
+// ───────────────────────────────────────────────────────────────────────────
+
+let originalTitle = ""
+let titleCorruptionInterval: ReturnType<typeof setInterval> | null = null
+
+const startTitleCorruption = () => {
+  if (exposure.level < 14) return
+  if (titleCorruptionInterval) return
+
+  originalTitle = document.title
+
+  titleCorruptionInterval = setInterval(() => {
+    if (exposure.level < 14) {
+      document.title = originalTitle
+      return
+    }
+
+    // Chance of corruption increases with level
+    const corruptChance = (exposure.level - 14) * 0.02
+
+    if (Math.random() < corruptChance) {
+      const corruptions = [
+        "03:47",
+        "0,0,0",
+        "SIGNAL LOST",
+        "???",
+        "COORDINATES UNKNOWN",
+        "SUBSTRATE",
+        "THEY SEE YOU",
+        "[TERMINAL COMPROMISED]",
+        originalTitle.replace(/[aeiou]/gi, "░"),
+        "█".repeat(originalTitle.length)
+      ]
+
+      const corruptedTitle = corruptions[Math.floor(Math.random() * corruptions.length)]
+      document.title = corruptedTitle
+
+      // Restore after brief moment
+      setTimeout(() => {
+        document.title = originalTitle
+      }, 200 + Math.random() * 800)
+    }
+  }, 5000)
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// THE HUM - AUDIO SYSTEM (Optional, with permission)
+// ───────────────────────────────────────────────────────────────────────────
+
+let audioContext: AudioContext | null = null
+let humOscillator: OscillatorNode | null = null
+let humGain: GainNode | null = null
+let audioEnabled = false
+
+const initAudio = async () => {
+  if (exposure.level < 18) return
+  if (audioContext) return
+
+  // Check if user has interacted (required for audio)
+  const hasInteracted = localStorage.getItem("void-audio-enabled")
+  if (!hasInteracted) return
+
+  try {
+    audioContext = new (window.AudioContext || (window as any).webkitAudioContext)()
+    humGain = audioContext.createGain()
+    humGain.connect(audioContext.destination)
+    humGain.gain.value = 0
+
+    humOscillator = audioContext.createOscillator()
+    humOscillator.type = "sine"
+    humOscillator.frequency.value = 40 + (exposure.level - 18) * 2 // Low frequency hum
+    humOscillator.connect(humGain)
+    humOscillator.start()
+
+    audioEnabled = true
+    updateHumVolume()
+  } catch (e) {
+    console.log("Audio not available")
+  }
+}
+
+const updateHumVolume = () => {
+  if (!humGain || !audioEnabled) return
+
+  // Volume scales with exposure
+  const baseVolume = Math.min((exposure.level - 18) * 0.01, 0.08)
+  humGain.gain.setTargetAtTime(baseVolume, audioContext!.currentTime, 0.5)
+}
+
+const pulseHum = () => {
+  if (!humGain || !humOscillator || !audioEnabled) return
+
+  const currentVol = humGain.gain.value
+  humGain.gain.setTargetAtTime(currentVol * 2, audioContext!.currentTime, 0.1)
+  humGain.gain.setTargetAtTime(currentVol, audioContext!.currentTime + 0.2, 0.3)
+
+  // Slight frequency shift
+  const baseFreq = 40 + (exposure.level - 18) * 2
+  humOscillator.frequency.setTargetAtTime(baseFreq * 1.5, audioContext!.currentTime, 0.1)
+  humOscillator.frequency.setTargetAtTime(baseFreq, audioContext!.currentTime + 0.3, 0.2)
+}
+
+// Enable audio on first significant interaction
+const setupAudioPermission = () => {
+  if (localStorage.getItem("void-audio-enabled")) return
+
+  const enableAudio = () => {
+    if (exposure.level >= 18) {
+      localStorage.setItem("void-audio-enabled", "true")
+      initAudio()
+    }
+    document.removeEventListener("click", enableAudio)
+  }
+
+  // Only prompt after significant exposure
+  if (exposure.level >= 18) {
+    document.addEventListener("click", enableAudio)
+  }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// BEACON CLEANSE LISTENER
+// ───────────────────────────────────────────────────────────────────────────
+
+const setupBeaconListener = () => {
+  window.addEventListener("beacon-cleanse", ((e: CustomEvent) => {
+    // Reload exposure from storage (beacon updated it)
+    exposure = loadExposure()
+
+    // Reapply theme
+    applyTheme(getThemeState())
+    updateStatusDisplay()
+
+    // Remove corruption effects
+    document.querySelectorAll(".margin-whisper, .hidden-watermark, .ghost-row").forEach(el => el.remove())
+
+    // Reset title
+    if (originalTitle) {
+      document.title = originalTitle
+    }
+
+    // Reduce audio if active
+    if (humGain && audioEnabled) {
+      humGain.gain.setTargetAtTime(0, audioContext!.currentTime, 0.5)
+    }
+  }) as EventListener)
+}
+
+// ───────────────────────────────────────────────────────────────────────────
 // TERMINAL COUNTER (FAKE BUT PERSISTENT)
 // ───────────────────────────────────────────────────────────────────────────
 
@@ -667,6 +1018,29 @@ const initTerminal = () => {
   document.addEventListener("keypress", resetIdleTimer)
   document.addEventListener("scroll", resetIdleTimer)
   document.addEventListener("click", resetIdleTimer)
+
+  // NEW HORROR EFFECTS
+  // Whispers in margins
+  setTimeout(addWhispers, 1500)
+
+  // Ghost table entries
+  setTimeout(addGhostEntries, 3000)
+
+  // Link misdirection
+  setTimeout(setupLinkMisdirection, 500)
+
+  // Other terminal flashes
+  scheduleOtherTerminalFlash()
+
+  // Title corruption
+  startTitleCorruption()
+
+  // Audio system
+  setupAudioPermission()
+  initAudio()
+
+  // Beacon listener
+  setupBeaconListener()
 }
 
 // Listen for dark mode clicks to trigger secret themes

@@ -37,7 +37,24 @@ An interconnected lore wiki for **Void Sector** — documenting the mysteries of
 - **Dark theme** — Matching the Void Sector game aesthetic
 - **Callouts** — Warnings, danger notices, and classified blocks
 - **Tags** — Filter by #leaked, #cover-up, #maven-cheung, and more
-- **Glitch effect** — Try clicking the theme toggle 😈
+
+### Terminal Immersion System
+
+The wiki features a progressive corruption system that tracks your exposure:
+
+- **Terminal Designation** — Each reader is assigned a unique VS-XXXX identifier
+- **Exposure Tracking** — Time spent, pages visited, and interaction patterns are monitored
+- **Progressive Themes** — Interface degrades through 6 stages as corruption accumulates:
+  - TRULLI SIGNAL (safe)
+  - SIGNAL DRIFT (mild corruption)
+  - ISOLATION PROTOCOL (moderate)
+  - SUBSTRATE RESONANCE (high)
+  - COORDINATES UNKNOWN (critical)
+  - TERMINAL UNRECOVERABLE (lost)
+- **Ambient Horror** — Whispers in margins, ghost table entries, link misdirection, browser title corruption
+- **Trulli Beacon** — A lifeline to cleanse corruption... while it still works
+- **Secret Themes** — Hidden states tied to lore characters
+- **The 03:47 Event** — Something happens at that time. Every time.
 
 ---
 

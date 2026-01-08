@@ -1,0 +1,479 @@
+// ═══════════════════════════════════════════════════════════════════════════
+// TRULLI BEACON STYLES
+// ═══════════════════════════════════════════════════════════════════════════
+
+$beacon-cyan: #4a9eff;
+$beacon-green: #44ff88;
+$beacon-orange: #ff6644;
+$beacon-purple: #9955dd;
+
+.trulli-beacon {
+  position: fixed;
+  bottom: 60px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  z-index: 9995;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+
+    .beacon-status,
+    .beacon-strength {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// BEACON RINGS
+// ───────────────────────────────────────────────────────────────────────────
+
+.beacon-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid $beacon-cyan;
+  opacity: 0.3;
+  animation: beacon-pulse 3s ease-in-out infinite;
+}
+
+.beacon-ring-outer {
+  width: 60px;
+  height: 60px;
+  animation-delay: 0s;
+}
+
+.beacon-ring-inner {
+  width: 45px;
+  height: 45px;
+  animation-delay: 0.5s;
+}
+
+@keyframes beacon-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.5;
+  }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// BEACON CORE
+// ───────────────────────────────────────────────────────────────────────────
+
+.beacon-core {
+  width: 35px;
+  height: 35px;
+  background: radial-gradient(circle, rgba(74, 158, 255, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.beacon-icon {
+  width: 25px;
+  height: 25px;
+  color: $beacon-cyan;
+  filter: drop-shadow(0 0 5px $beacon-cyan);
+}
+
+.beacon-wave {
+  opacity: 0.6;
+  animation: wave-pulse 2s ease-in-out infinite;
+}
+
+.wave-1 { animation-delay: 0s; }
+.wave-2 { animation-delay: 0.3s; }
+.wave-3 { animation-delay: 0.6s; }
+
+@keyframes wave-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// STATUS TEXT
+// ───────────────────────────────────────────────────────────────────────────
+
+.beacon-status,
+.beacon-strength {
+  position: absolute;
+  right: 70px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.beacon-status {
+  top: 15px;
+  color: var(--vs-muted, #6688aa);
+}
+
+.beacon-strength {
+  top: 28px;
+  color: $beacon-cyan;
+  font-weight: 600;
+
+  &.failing {
+    color: $beacon-orange;
+    animation: strength-flicker 0.5s ease-in-out infinite;
+  }
+
+  &.lost {
+    color: $beacon-orange;
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+}
+
+@keyframes strength-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// BEACON STATES
+// ───────────────────────────────────────────────────────────────────────────
+
+// Strong - Default cyan, healthy
+.trulli-beacon[data-state="strong"] {
+  .beacon-ring { border-color: $beacon-cyan; }
+  .beacon-icon { color: $beacon-cyan; }
+}
+
+// Stable - Slightly dimmer
+.trulli-beacon[data-state="stable"] {
+  .beacon-ring {
+    border-color: #5588cc;
+    opacity: 0.25;
+  }
+  .beacon-icon { color: #5588cc; }
+}
+
+// Weak - Starting to struggle
+.trulli-beacon[data-state="weak"] {
+  .beacon-ring {
+    border-color: #7766aa;
+    animation: beacon-pulse-weak 2s ease-in-out infinite;
+  }
+  .beacon-icon {
+    color: #7766aa;
+    animation: icon-flicker 3s ease-in-out infinite;
+  }
+}
+
+@keyframes beacon-pulse-weak {
+  0%, 100% { transform: scale(1); opacity: 0.2; }
+  50% { transform: scale(1.05); opacity: 0.35; }
+}
+
+@keyframes icon-flicker {
+  0%, 90%, 100% { opacity: 1; }
+  92%, 98% { opacity: 0.5; }
+}
+
+// Failing - Critical state
+.trulli-beacon[data-state="failing"] {
+  .beacon-ring {
+    border-color: $beacon-orange;
+    opacity: 0.15;
+    animation: beacon-pulse-failing 1.5s ease-in-out infinite;
+  }
+  .beacon-icon {
+    color: $beacon-orange;
+    animation: icon-struggle 1s ease-in-out infinite;
+  }
+  .beacon-core {
+    background: radial-gradient(circle, rgba(255, 102, 68, 0.1) 0%, transparent 70%);
+  }
+}
+
+@keyframes beacon-pulse-failing {
+  0%, 100% { transform: scale(1); opacity: 0.1; }
+  30% { transform: scale(1.02); opacity: 0.2; }
+  60% { transform: scale(0.98); opacity: 0.05; }
+}
+
+@keyframes icon-struggle {
+  0%, 100% { opacity: 0.7; transform: translate(0); }
+  25% { opacity: 0.4; transform: translate(-1px, 1px); }
+  50% { opacity: 0.8; transform: translate(1px, -1px); }
+  75% { opacity: 0.3; transform: translate(-1px, -1px); }
+}
+
+// Lost - Beacon is gone
+.trulli-beacon[data-state="lost"] {
+  opacity: 0.3;
+  pointer-events: none;
+
+  .beacon-ring {
+    border-color: #333;
+    opacity: 0.1;
+    animation: none;
+  }
+  .beacon-icon {
+    color: #444;
+    filter: none;
+    animation: none;
+  }
+  .beacon-wave {
+    opacity: 0;
+  }
+  .beacon-core {
+    background: none;
+  }
+
+  &:hover {
+    transform: none;
+    cursor: not-allowed;
+  }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// ACTIVATION STATES
+// ───────────────────────────────────────────────────────────────────────────
+
+.trulli-beacon.beacon-activating {
+  .beacon-ring {
+    animation: beacon-charge 0.5s ease-in-out infinite;
+    border-color: $beacon-green;
+  }
+  .beacon-icon {
+    color: $beacon-green;
+    animation: icon-charge 0.3s ease-in-out infinite;
+  }
+}
+
+@keyframes beacon-charge {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+@keyframes icon-charge {
+  0%, 100% { filter: drop-shadow(0 0 5px $beacon-green); }
+  50% { filter: drop-shadow(0 0 15px $beacon-green); }
+}
+
+.trulli-beacon.beacon-success {
+  .beacon-ring {
+    border-color: $beacon-green;
+    animation: beacon-success-ring 0.5s ease-out;
+  }
+  .beacon-icon {
+    color: $beacon-green;
+    filter: drop-shadow(0 0 20px $beacon-green);
+  }
+}
+
+@keyframes beacon-success-ring {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+.trulli-beacon.beacon-failed {
+  animation: beacon-shake 0.3s ease-in-out;
+
+  .beacon-ring {
+    border-color: $beacon-orange;
+  }
+  .beacon-icon {
+    color: $beacon-orange;
+  }
+}
+
+@keyframes beacon-shake {
+  0%, 100% { transform: translate(0); }
+  25% { transform: translate(-3px, 2px); }
+  50% { transform: translate(3px, -2px); }
+  75% { transform: translate(-2px, -2px); }
+}
+
+.trulli-beacon.beacon-denied {
+  animation: beacon-denied 0.5s ease-in-out;
+
+  .beacon-icon {
+    color: #ff2222;
+  }
+}
+
+@keyframes beacon-denied {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.1; }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// UNSTABLE/CRITICAL EFFECTS
+// ───────────────────────────────────────────────────────────────────────────
+
+.trulli-beacon.beacon-unstable {
+  animation: beacon-unstable 5s ease-in-out infinite;
+}
+
+@keyframes beacon-unstable {
+  0%, 95%, 100% { transform: translate(0); }
+  96% { transform: translate(-1px, 1px); }
+  97% { transform: translate(1px, -1px); }
+  98% { transform: translate(-1px, 0); }
+  99% { transform: translate(0, 1px); }
+}
+
+.trulli-beacon.beacon-critical {
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, rgba(255, 102, 68, 0.1) 0%, transparent 70%);
+    animation: critical-pulse 2s ease-in-out infinite;
+  }
+}
+
+@keyframes critical-pulse {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.trulli-beacon.beacon-flicker {
+  .beacon-icon {
+    opacity: 0.2;
+  }
+  .beacon-ring {
+    opacity: 0.05;
+  }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// BEACON MESSAGE
+// ───────────────────────────────────────────────────────────────────────────
+
+.beacon-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1.2rem;
+  color: $beacon-cyan;
+  text-shadow: 0 0 20px $beacon-cyan;
+  letter-spacing: 0.15em;
+  z-index: 10001;
+  animation: message-appear 0.3s ease-out;
+  pointer-events: none;
+
+  &.fade-out {
+    animation: message-disappear 0.5s ease-out forwards;
+  }
+}
+
+@keyframes message-appear {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes message-disappear {
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// GLOBAL EFFECTS FROM BEACON
+// ───────────────────────────────────────────────────────────────────────────
+
+.beacon-cleanse {
+  animation: cleanse-flash 1.5s ease-out;
+}
+
+@keyframes cleanse-flash {
+  0% {
+    filter: brightness(1.5) saturate(1.5) hue-rotate(-30deg);
+  }
+  30% {
+    filter: brightness(1.2) saturate(1.2) hue-rotate(-15deg);
+  }
+  100% {
+    filter: none;
+  }
+}
+
+.beacon-fail-glitch {
+  animation: fail-glitch 0.3s linear;
+}
+
+@keyframes fail-glitch {
+  0%, 100% { filter: none; transform: translate(0); }
+  25% { filter: hue-rotate(90deg); transform: translate(-2px, 1px); }
+  50% { filter: hue-rotate(-90deg); transform: translate(2px, -1px); }
+  75% { filter: hue-rotate(45deg); transform: translate(-1px, -1px); }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// MOBILE RESPONSIVE
+// ───────────────────────────────────────────────────────────────────────────
+
+@media screen and (max-width: 768px) {
+  .trulli-beacon {
+    width: 50px;
+    height: 50px;
+    bottom: 55px;
+    right: 15px;
+  }
+
+  .beacon-ring-outer {
+    width: 50px;
+    height: 50px;
+  }
+
+  .beacon-ring-inner {
+    width: 38px;
+    height: 38px;
+  }
+
+  .beacon-core {
+    width: 30px;
+    height: 30px;
+  }
+
+  .beacon-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .beacon-status,
+  .beacon-strength {
+    display: none;
+  }
+
+  .beacon-message {
+    font-size: 0.9rem;
+  }
+}
