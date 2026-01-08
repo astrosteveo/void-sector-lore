@@ -226,10 +226,17 @@ hr {
 // TABLE STYLING
 // ───────────────────────────────────────────────────────────────────────────
 
+// Wrapper for tables to handle overflow
+.table-wrapper {
+  overflow-x: auto;
+  max-width: 100%;
+  margin: 1.5rem 0;
+}
+
 table {
   border-collapse: collapse;
   width: 100%;
-  margin: 1.5rem 0;
+  max-width: 100%;
   background: $vs-panel;
   border: 1px solid rgba(74, 158, 255, 0.3);
 
@@ -421,6 +428,17 @@ time {
 // ───────────────────────────────────────────────────────────────────────────
 // ARTICLE / CONTENT AREA
 // ───────────────────────────────────────────────────────────────────────────
+
+article {
+  max-width: 100%;
+  overflow-x: hidden;
+  word-wrap: break-word;
+
+  // Ensure all direct children respect container width
+  & > * {
+    max-width: 100%;
+  }
+}
 
 article.popover-hint {
   // Add subtle grid background
