@@ -1,0 +1,359 @@
+// ═══════════════════════════════════════════════════════════════════════════
+// EMERGENCY RESET STYLES
+// ═══════════════════════════════════════════════════════════════════════════
+
+$reset-orange: #ff6644;
+$reset-red: #ff3344;
+$reset-cyan: #4a9eff;
+$reset-green: #44ff88;
+
+.emergency-reset {
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  font-family: "JetBrains Mono", monospace;
+  animation: reset-slide-in 0.5s ease-out;
+}
+
+@keyframes reset-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.reset-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(10, 10, 15, 0.95);
+  border: 1px solid rgba(255, 102, 68, 0.4);
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(255, 102, 68, 0.2);
+}
+
+.reset-warning {
+  font-size: 1.2rem;
+  color: $reset-orange;
+  animation: warning-pulse 2s ease-in-out infinite;
+}
+
+@keyframes warning-pulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; text-shadow: 0 0 10px $reset-orange; }
+}
+
+.reset-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.reset-title {
+  font-size: 0.65rem;
+  color: var(--vs-text, #aabbcc);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.reset-subtitle {
+  font-size: 0.55rem;
+  color: $reset-orange;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.reset-button {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  background: transparent;
+  border: 1px solid $reset-orange;
+  color: $reset-orange;
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  border-radius: 2px;
+
+  &:hover {
+    background: rgba(255, 102, 68, 0.15);
+    box-shadow: 0 0 15px rgba(255, 102, 68, 0.3);
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+// Urgent state (level 25+)
+.emergency-reset.reset-urgent {
+  animation: reset-urgent 1s ease-in-out infinite;
+
+  .reset-container {
+    border-color: $reset-red;
+    box-shadow: 0 4px 20px rgba(255, 51, 68, 0.4);
+  }
+
+  .reset-warning {
+    color: $reset-red;
+    animation: warning-urgent 1s ease-in-out infinite;
+  }
+
+  .reset-subtitle {
+    color: $reset-red;
+  }
+
+  .reset-button {
+    border-color: $reset-red;
+    color: $reset-red;
+
+    &:hover {
+      background: rgba(255, 51, 68, 0.2);
+      box-shadow: 0 0 20px rgba(255, 51, 68, 0.5);
+    }
+  }
+}
+
+@keyframes reset-urgent {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-2px); }
+}
+
+@keyframes warning-urgent {
+  0%, 100% { opacity: 1; text-shadow: 0 0 15px $reset-red; }
+  50% { opacity: 0.7; text-shadow: 0 0 5px $reset-red; }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// RESET OVERLAY & MESSAGES
+// ───────────────────────────────────────────────────────────────────────────
+
+.reset-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 10002;
+  animation: overlay-fade-in 0.3s ease-out;
+  pointer-events: none;
+
+  &.fade-out {
+    animation: overlay-fade-out 0.5s ease-out forwards;
+  }
+}
+
+@keyframes overlay-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes overlay-fade-out {
+  to { opacity: 0; }
+}
+
+.reset-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 2rem 3rem;
+  background: rgba(10, 10, 15, 0.95);
+  border: 2px solid $reset-cyan;
+  border-radius: 4px;
+  animation: message-pop 0.3s ease-out;
+
+  &.error {
+    border-color: $reset-red;
+  }
+
+  &.success {
+    border-color: $reset-green;
+  }
+}
+
+@keyframes message-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.reset-message-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--vs-text, #aabbcc);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.reset-message.success .reset-message-title {
+  color: $reset-green;
+  text-shadow: 0 0 20px $reset-green;
+}
+
+.reset-message.error .reset-message-title {
+  color: $reset-red;
+  text-shadow: 0 0 20px $reset-red;
+}
+
+.reset-message-subtitle {
+  font-size: 0.8rem;
+  color: var(--vs-muted, #6688aa);
+  letter-spacing: 0.1em;
+  text-align: center;
+  font-style: italic;
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// RESET FLASH EFFECT
+// ───────────────────────────────────────────────────────────────────────────
+
+.reset-flash {
+  animation: reset-flash-effect 0.5s ease-out;
+}
+
+@keyframes reset-flash-effect {
+  0% {
+    filter: brightness(2) saturate(0);
+  }
+  50% {
+    filter: brightness(1.5) saturate(0.5);
+  }
+  100% {
+    filter: none;
+  }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// MOBILE RESPONSIVE
+// ───────────────────────────────────────────────────────────────────────────
+
+@media screen and (max-width: 768px) {
+  .emergency-reset {
+    bottom: 45px;
+    left: 50%;
+    right: auto;
+  }
+
+  .reset-container {
+    gap: 0.5rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .reset-warning {
+    font-size: 1rem;
+  }
+
+  .reset-title {
+    font-size: 0.6rem;
+  }
+
+  .reset-subtitle {
+    font-size: 0.5rem;
+  }
+
+  .reset-button {
+    font-size: 0.65rem;
+    padding: 0.35rem 0.6rem;
+  }
+
+  .reset-message {
+    padding: 1.5rem 2rem;
+    margin: 0 1rem;
+  }
+
+  .reset-message-title {
+    font-size: 1rem;
+  }
+
+  .reset-message-subtitle {
+    font-size: 0.7rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .emergency-reset {
+    bottom: 42px;
+  }
+
+  .reset-container {
+    gap: 0.4rem;
+    padding: 0.35rem 0.5rem;
+  }
+
+  .reset-warning {
+    font-size: 0.9rem;
+  }
+
+  .reset-info {
+    gap: 0.05rem;
+  }
+
+  .reset-title {
+    font-size: 0.55rem;
+  }
+
+  .reset-subtitle {
+    font-size: 0.45rem;
+  }
+
+  .reset-button {
+    font-size: 0.6rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .reset-message {
+    padding: 1rem 1.5rem;
+  }
+
+  .reset-message-title {
+    font-size: 0.9rem;
+  }
+
+  .reset-message-subtitle {
+    font-size: 0.65rem;
+  }
+}
+
+// Landscape mode on mobile
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .emergency-reset {
+    bottom: 38px;
+  }
+
+  .reset-container {
+    padding: 0.3rem 0.5rem;
+  }
+
+  .reset-message {
+    padding: 1rem 1.5rem;
+  }
+}

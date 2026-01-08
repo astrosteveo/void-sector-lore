@@ -5,7 +5,7 @@ import * as Component from "./quartz/components"
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
-  afterBody: [Component.TerminalStatus(), Component.TrulliBeacon()],
+  afterBody: [Component.TerminalStatus(), Component.TrulliBeacon(), Component.EmergencyReset()],
   footer: Component.Footer({
     links: {
       "Void Sector": "https://github.com/astrosteveo/void-sector",
