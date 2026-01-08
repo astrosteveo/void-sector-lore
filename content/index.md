@@ -6,7 +6,11 @@ tags:
   - navigation
 ---
 
-# Void Sector Archive
+<div class="framed" style="text-align: center; margin-bottom: 2rem;">
+
+![Void Sector](/static/void-sector-logo.svg)
+
+</div>
 
 > *"The universe did not begin with a bang. It began with a wound."*
 
@@ -37,15 +41,17 @@ New to the archive? Read these first:
 
 ## Documents
 
+<img src="/static/divider-circuit.svg" alt="" class="divider-circuit" />
+
 ### Primary Sources
 
 | Document | Type | Classification |
 |----------|------|----------------|
-| [[the-fracture\|The Fracture]] | Lore | Public |
-| [[personal-log-maven-cheung\|Personal Log: Maven Cheung]] | Recovered | Public |
-| [[incident-report-7743\|Incident Report 7743]] | Official Report | Restricted |
-| [[board-meeting-minutes-2407-01-15\|Board Meeting Minutes]] | Corporate | **LEAKED** |
-| [[the-leak-encrypted-message\|The Leak]] | Whistleblower | Encrypted |
+| [[the-fracture\|The Fracture]] | Lore | <span class="badge badge--public">Public</span> |
+| [[personal-log-maven-cheung\|Personal Log: Maven Cheung]] | Recovered | <span class="badge badge--public">Public</span> |
+| [[incident-report-7743\|Incident Report 7743]] | Official Report | <span class="badge badge--restricted">Restricted</span> |
+| [[board-meeting-minutes-2407-01-15\|Board Meeting Minutes]] | Corporate | <span class="badge badge--leaked">Leaked</span> |
+| [[the-leak-encrypted-message\|The Leak]] | Whistleblower | <span class="badge badge--classified">Encrypted</span> |
 
 ### Reference
 
@@ -55,10 +61,12 @@ New to the archive? Read these first:
 
 ## Characters
 
+<img src="/static/divider-substrate.svg" alt="" class="divider-substrate" />
+
 | Character | Role | Status |
 |-----------|------|--------|
-| [[characters/maven-cheung\|Maven Cheung]] | Independent Miner | Missing |
-| [[characters/dr-helena-sarr\|Dr. Helena Sarr]] | Director of Safety | Active |
+| [[characters/maven-cheung\|Maven Cheung]] | Independent Miner | <span class="badge badge--missing">Missing</span> |
+| [[characters/dr-helena-sarr\|Dr. Helena Sarr]] | Director of Safety | <span class="badge badge--public">Active</span> |
 
 ---
 
@@ -117,5 +125,11 @@ From [[the-leak-encrypted-message|the whistleblower]]:
 > *"Post a classified ad in the Meridian-7 Station Bulletin, Section K (Missed Connections), with the phrase:* **'Looking for the friend who left their jacket at the 03:47 shuttle.'**"
 
 ---
+
+<div style="text-align: center; margin-top: 3rem;">
+
+![](/static/void-icon.svg){width=80}
+
+</div>
 
 > *"In every Void Sector, you find something else."*

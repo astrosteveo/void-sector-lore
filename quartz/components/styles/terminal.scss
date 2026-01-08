@@ -1,0 +1,508 @@
+// ═══════════════════════════════════════════════════════════════════════════
+// VOID SECTOR TERMINAL STATUS STYLES
+// ═══════════════════════════════════════════════════════════════════════════
+
+$vs-cyan: #4a9eff;
+$vs-green: #44ff88;
+$vs-orange: #ff6644;
+$vs-purple: #9955dd;
+$vs-void: #0a0a0f;
+
+// ───────────────────────────────────────────────────────────────────────────
+// TERMINAL STATUS BAR
+// ───────────────────────────────────────────────────────────────────────────
+
+.terminal-status {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9990;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  background: rgba(10, 10, 15, 0.95);
+  border-top: 1px solid rgba(74, 158, 255, 0.3);
+  padding: 0.4rem 1rem;
+  backdrop-filter: blur(10px);
+}
+
+.terminal-status-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: var(--vs-muted, #6688aa);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.terminal-id {
+  color: var(--vs-primary, #4a9eff);
+  font-weight: 600;
+}
+
+.terminal-divider {
+  opacity: 0.3;
+}
+
+.terminal-state {
+  color: var(--vs-text, #aabbcc);
+  transition: color 0.3s ease;
+}
+
+.terminal-session {
+  color: var(--vs-muted, #6688aa);
+  font-variant-numeric: tabular-nums;
+}
+
+// Exposure bar
+.terminal-exposure-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(74, 158, 255, 0.1);
+}
+
+.terminal-exposure-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--vs-primary, #4a9eff), var(--vs-secondary, #44ff88));
+  transition: width 0.5s ease, background 0.5s ease;
+  box-shadow: 0 0 10px var(--vs-primary, #4a9eff);
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// TERMINAL MESSAGE OVERLAY
+// ───────────────────────────────────────────────────────────────────────────
+
+.terminal-message-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 10000;
+  animation: message-fade-in 0.3s ease-out;
+  pointer-events: none;
+}
+
+.terminal-message {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--vs-primary, #4a9eff);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  text-shadow:
+    2px 0 var(--vs-secondary, #44ff88),
+    -2px 0 var(--vs-danger, #ff6644),
+    0 0 30px var(--vs-primary, #4a9eff);
+  animation: message-glitch 0.15s ease-in-out infinite;
+}
+
+@keyframes message-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes message-glitch {
+  0%, 100% { transform: translate(0); }
+  25% { transform: translate(-2px, 1px); }
+  50% { transform: translate(2px, -1px); }
+  75% { transform: translate(-1px, -1px); }
+}
+
+.terminal-message-overlay.fade-out {
+  animation: message-fade-out 0.5s ease-out forwards;
+}
+
+@keyframes message-fade-out {
+  to {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// GLITCH TEXT MICRO (for status bar)
+// ───────────────────────────────────────────────────────────────────────────
+
+.glitch-text-micro {
+  animation: micro-glitch 0.1s linear;
+}
+
+@keyframes micro-glitch {
+  0% { transform: translate(0); filter: none; }
+  25% { transform: translate(-1px, 0); filter: hue-rotate(90deg); }
+  50% { transform: translate(1px, 0); filter: hue-rotate(180deg); }
+  75% { transform: translate(0, 1px); filter: hue-rotate(270deg); }
+  100% { transform: translate(0); filter: none; }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// HIDDEN WATERMARKS
+// ───────────────────────────────────────────────────────────────────────────
+
+.hidden-watermark {
+  position: fixed;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--vs-danger, #ff6644);
+  pointer-events: none;
+  z-index: 1;
+  user-select: none;
+  transform: rotate(-15deg);
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// TERMINAL COUNTER
+// ───────────────────────────────────────────────────────────────────────────
+
+.terminal-count {
+  position: fixed;
+  bottom: 50px;
+  right: 20px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.65rem;
+  color: var(--vs-muted, #6688aa);
+  opacity: 0.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: count-fade-in 2s ease-out;
+}
+
+.count-number {
+  color: var(--vs-danger, #ff6644);
+  font-weight: 600;
+}
+
+@keyframes count-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 0.4; transform: translateY(0); }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// IDLE STATE
+// ───────────────────────────────────────────────────────────────────────────
+
+.idle-state {
+  &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      circle at center,
+      transparent 0%,
+      rgba(0, 0, 0, 0.3) 100%
+    );
+    pointer-events: none;
+    z-index: 9995;
+    animation: idle-vignette 3s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes idle-vignette {
+  from { opacity: 0.5; }
+  to { opacity: 0.8; }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// 03:47 EVENT
+// ───────────────────────────────────────────────────────────────────────────
+
+.event-0347 {
+  animation: event-0347-flash 0.5s ease-out;
+
+  &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 102, 68, 0.2);
+    pointer-events: none;
+    z-index: 9999;
+    animation: event-0347-pulse 1s ease-in-out infinite;
+  }
+}
+
+@keyframes event-0347-flash {
+  0% { filter: brightness(2) hue-rotate(180deg); }
+  100% { filter: none; }
+}
+
+@keyframes event-0347-pulse {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.3; }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// THRESHOLD FLASH
+// ───────────────────────────────────────────────────────────────────────────
+
+.threshold-flash {
+  animation: threshold-effect 0.5s ease-out;
+}
+
+@keyframes threshold-effect {
+  0% {
+    filter: brightness(1.5) saturate(1.5);
+  }
+  50% {
+    filter: brightness(0.8) saturate(0.8);
+  }
+  100% {
+    filter: none;
+  }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// AMBIENT GLITCH
+// ───────────────────────────────────────────────────────────────────────────
+
+.ambient-glitch {
+  animation: ambient-glitch-effect 0.15s linear;
+}
+
+@keyframes ambient-glitch-effect {
+  0% { transform: translate(0); filter: none; }
+  33% { transform: translate(-2px, 1px); filter: hue-rotate(90deg) brightness(1.1); }
+  66% { transform: translate(2px, -1px); filter: hue-rotate(-90deg) brightness(0.9); }
+  100% { transform: translate(0); filter: none; }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// SMALL FLASH MESSAGE
+// ───────────────────────────────────────────────────────────────────────────
+
+.glitch-flash-message.small {
+  font-size: 2rem;
+  opacity: 0.5;
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// EXPOSURE LEVEL EFFECTS (CSS-driven)
+// ───────────────────────────────────────────────────────────────────────────
+
+// Level 5+: Subtle vignette
+:root[data-exposure-level="5"],
+:root[data-exposure-level="6"],
+:root[data-exposure-level="7"],
+:root[data-exposure-level="8"],
+:root[data-exposure-level="9"] {
+  &::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 9000;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 60%,
+      rgba(0, 0, 0, 0.1) 100%
+    );
+  }
+}
+
+// Level 10+: Stronger vignette + scan lines
+:root[data-exposure-level="10"],
+:root[data-exposure-level="11"],
+:root[data-exposure-level="12"],
+:root[data-exposure-level="13"],
+:root[data-exposure-level="14"] {
+  &::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 9000;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.03) 2px,
+        rgba(0, 0, 0, 0.03) 4px
+      ),
+      radial-gradient(
+        ellipse at center,
+        transparent 50%,
+        rgba(0, 0, 0, 0.15) 100%
+      );
+  }
+}
+
+// Level 15+: Purple tinge + heavier effects
+:root[data-exposure-level="15"],
+:root[data-exposure-level="16"],
+:root[data-exposure-level="17"],
+:root[data-exposure-level="18"],
+:root[data-exposure-level="19"] {
+  &::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 9000;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(100, 50, 150, 0.02) 2px,
+        rgba(100, 50, 150, 0.02) 4px
+      ),
+      radial-gradient(
+        ellipse at center,
+        transparent 40%,
+        rgba(50, 0, 80, 0.2) 100%
+      );
+  }
+}
+
+// Level 20+: Heavy corruption
+:root[data-exposure-level="20"],
+:root[data-exposure-level="21"],
+:root[data-exposure-level="22"],
+:root[data-exposure-level="23"],
+:root[data-exposure-level="24"] {
+  &::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 9000;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 1px,
+        rgba(150, 50, 200, 0.03) 1px,
+        rgba(150, 50, 200, 0.03) 3px
+      ),
+      radial-gradient(
+        ellipse at center,
+        transparent 30%,
+        rgba(80, 0, 120, 0.3) 100%
+      );
+    animation: corruption-drift 10s linear infinite;
+  }
+}
+
+// Level 25+: Terminal lost
+:root[data-exposure-level="25"],
+:root[data-exposure-level="26"],
+:root[data-exposure-level="27"],
+:root[data-exposure-level="28"],
+:root[data-exposure-level="29"],
+:root[data-exposure-level="30"] {
+  &::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 9000;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 1px,
+        rgba(200, 50, 255, 0.04) 1px,
+        rgba(200, 50, 255, 0.04) 2px
+      ),
+      radial-gradient(
+        ellipse at center,
+        transparent 20%,
+        rgba(100, 0, 150, 0.4) 100%
+      );
+    animation: corruption-drift 5s linear infinite, corruption-pulse 2s ease-in-out infinite;
+  }
+}
+
+@keyframes corruption-drift {
+  from { background-position: 0 0; }
+  to { background-position: 0 100px; }
+}
+
+@keyframes corruption-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// MOBILE RESPONSIVE
+// ───────────────────────────────────────────────────────────────────────────
+
+@media screen and (max-width: 768px) {
+  .terminal-status {
+    font-size: 0.6rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .terminal-status-inner {
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .terminal-message {
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+  }
+
+  .terminal-count {
+    font-size: 0.55rem;
+    bottom: 45px;
+    right: 10px;
+  }
+
+  .hidden-watermark {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .terminal-status-inner {
+    gap: 0.3rem;
+  }
+
+  .terminal-divider {
+    display: none;
+  }
+
+  .terminal-session {
+    display: none;
+  }
+}

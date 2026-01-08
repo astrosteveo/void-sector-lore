@@ -1,3 +1,700 @@
 @use "./base.scss";
 
-// put your custom CSS here!
+// ═══════════════════════════════════════════════════════════════════════════
+// VOID SECTOR CUSTOM STYLES
+// ═══════════════════════════════════════════════════════════════════════════
+
+// CSS Custom Properties (set dynamically by terminal.inline.ts)
+:root {
+  --vs-primary: #4a9eff;
+  --vs-secondary: #44ff88;
+  --vs-accent: #4a9eff;
+  --vs-danger: #ff6644;
+  --vs-background: #0a0a0f;
+  --vs-panel: #0a0f19;
+  --vs-text: #aabbcc;
+  --vs-muted: #6688aa;
+}
+
+// Fallback SCSS variables (for compilation)
+$vs-cyan: var(--vs-primary, #4a9eff);
+$vs-green: var(--vs-secondary, #44ff88);
+$vs-orange: var(--vs-danger, #ff6644);
+$vs-void: var(--vs-background, #0a0a0f);
+$vs-panel: var(--vs-panel, #0a0f19);
+$vs-muted: var(--vs-muted, #6688aa);
+$vs-text: var(--vs-text, #aabbcc);
+$vs-bright: #ddeeff;
+
+// ───────────────────────────────────────────────────────────────────────────
+// LOGO & HEADER STYLING
+// ───────────────────────────────────────────────────────────────────────────
+
+.void-sector-logo {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 2rem auto;
+  filter: drop-shadow(0 0 20px rgba(74, 158, 255, 0.3));
+}
+
+// Page title enhancement
+.page-title {
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid $vs-cyan;
+    opacity: 0.5;
+  }
+
+  &::before {
+    top: -8px;
+    left: -16px;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  &::after {
+    bottom: -8px;
+    right: -16px;
+    border-left: none;
+    border-top: none;
+  }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// DIVIDERS & DECORATIVE ELEMENTS
+// ───────────────────────────────────────────────────────────────────────────
+
+.divider-circuit,
+.divider-substrate {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  margin: 2rem auto;
+  opacity: 0.8;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    $vs-cyan 20%,
+    $vs-green 50%,
+    $vs-cyan 80%,
+    transparent 100%
+  );
+  margin: 2rem 0;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: $vs-green;
+    border-radius: 50%;
+    box-shadow: 0 0 10px $vs-green;
+  }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// CLASSIFICATION BADGES
+// ───────────────────────────────────────────────────────────────────────────
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0.25rem;
+
+  &--classified {
+    background: rgba(255, 102, 68, 0.15);
+    border: 1px solid $vs-orange;
+    color: $vs-orange;
+    box-shadow: 0 0 10px rgba(255, 102, 68, 0.2);
+  }
+
+  &--leaked {
+    background: rgba(68, 255, 136, 0.15);
+    border: 1px dashed $vs-green;
+    color: $vs-green;
+    box-shadow: 0 0 10px rgba(68, 255, 136, 0.2);
+  }
+
+  &--restricted {
+    background: rgba(74, 158, 255, 0.15);
+    border: 1px solid $vs-cyan;
+    color: $vs-cyan;
+    box-shadow: 0 0 10px rgba(74, 158, 255, 0.2);
+  }
+
+  &--public {
+    background: rgba(102, 136, 170, 0.15);
+    border: 1px solid $vs-muted;
+    color: $vs-muted;
+  }
+
+  &--missing {
+    background: rgba(255, 102, 68, 0.2);
+    border: 1px solid $vs-orange;
+    color: $vs-orange;
+    animation: pulse-warning 2s ease-in-out infinite;
+  }
+}
+
+@keyframes pulse-warning {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// CALLOUT ENHANCEMENTS
+// ───────────────────────────────────────────────────────────────────────────
+
+.callout {
+  position: relative;
+  border-left: 3px solid $vs-cyan;
+  background: rgba(10, 15, 25, 0.8);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, $vs-cyan, transparent);
+  }
+
+  &[data-callout="warning"],
+  &[data-callout="danger"] {
+    border-left-color: $vs-orange;
+    background: rgba(255, 102, 68, 0.05);
+
+    &::before {
+      background: linear-gradient(90deg, $vs-orange, transparent);
+    }
+
+    .callout-title {
+      color: $vs-orange;
+    }
+  }
+
+  &[data-callout="info"],
+  &[data-callout="note"] {
+    border-left-color: $vs-cyan;
+
+    .callout-title {
+      color: $vs-cyan;
+    }
+  }
+
+  &[data-callout="success"],
+  &[data-callout="tip"] {
+    border-left-color: $vs-green;
+    background: rgba(68, 255, 136, 0.05);
+
+    &::before {
+      background: linear-gradient(90deg, $vs-green, transparent);
+    }
+
+    .callout-title {
+      color: $vs-green;
+    }
+  }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// TABLE STYLING
+// ───────────────────────────────────────────────────────────────────────────
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5rem 0;
+  background: $vs-panel;
+  border: 1px solid rgba(74, 158, 255, 0.3);
+
+  th {
+    background: rgba(74, 158, 255, 0.1);
+    color: $vs-bright;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    padding: 0.75rem 1rem;
+    border-bottom: 2px solid $vs-cyan;
+    text-align: left;
+  }
+
+  td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(74, 158, 255, 0.1);
+  }
+
+  tr:hover td {
+    background: rgba(74, 158, 255, 0.05);
+  }
+
+  // Special styling for status cells
+  td:last-child {
+    font-family: "JetBrains Mono", monospace;
+  }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// BLOCKQUOTE (LORE QUOTES)
+// ───────────────────────────────────────────────────────────────────────────
+
+blockquote {
+  position: relative;
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 15, 25, 0.9) 0%,
+    rgba(10, 10, 15, 0.8) 100%
+  );
+  border-left: 3px solid $vs-cyan;
+  border-radius: 0 4px 4px 0;
+  font-style: italic;
+
+  &::before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    font-size: 3rem;
+    color: $vs-cyan;
+    opacity: 0.3;
+    font-family: Georgia, serif;
+  }
+
+  p {
+    margin: 0;
+    color: $vs-text;
+  }
+
+  em {
+    color: $vs-bright;
+  }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// CODE BLOCKS
+// ───────────────────────────────────────────────────────────────────────────
+
+pre {
+  position: relative;
+  background: $vs-void !important;
+  border: 1px solid rgba(74, 158, 255, 0.2);
+  border-radius: 4px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, $vs-cyan, $vs-green, $vs-cyan);
+  }
+}
+
+code {
+  font-family: "JetBrains Mono", monospace;
+  background: rgba(74, 158, 255, 0.1);
+  padding: 0.1rem 0.3rem;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// TIMESTAMP STYLING (03:47)
+// ───────────────────────────────────────────────────────────────────────────
+
+.timestamp,
+time {
+  font-family: "JetBrains Mono", monospace;
+  color: $vs-muted;
+  font-size: 0.85rem;
+
+  &.anomaly {
+    color: $vs-orange;
+    text-shadow: 0 0 10px rgba(255, 102, 68, 0.5);
+  }
+}
+
+// Special styling for 03:47 mentions
+:where(p, li, td):has(> :is(strong, em)) {
+  &:has(:is(strong, em):where(:is([data-03], :contains("03:47")))) {
+    color: $vs-orange;
+  }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// SCANNER / DATA DISPLAY EFFECTS
+// ───────────────────────────────────────────────────────────────────────────
+
+.scanner-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, $vs-cyan, transparent);
+  opacity: 0.3;
+  animation: scan 4s linear infinite;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+@keyframes scan {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100vh); }
+}
+
+// Terminal cursor effect for certain elements
+.terminal-cursor::after {
+  content: '█';
+  animation: blink 1s step-end infinite;
+  color: $vs-cyan;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// CORNER FRAME DECORATIONS
+// ───────────────────────────────────────────────────────────────────────────
+
+.framed {
+  position: relative;
+  padding: 1.5rem;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 2px solid $vs-cyan;
+    opacity: 0.6;
+  }
+
+  &::before {
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  &::after {
+    bottom: 0;
+    right: 0;
+    border-left: none;
+    border-top: none;
+  }
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// ARTICLE / CONTENT AREA
+// ───────────────────────────────────────────────────────────────────────────
+
+article.popover-hint {
+  // Add subtle grid background
+  background-image:
+    linear-gradient(rgba(74, 158, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 158, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// HEADER ENHANCEMENTS
+// ───────────────────────────────────────────────────────────────────────────
+
+h1, h2, h3, h4, h5, h6 {
+  position: relative;
+  color: $vs-bright;
+}
+
+h1 {
+  &::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, $vs-cyan, $vs-green);
+    margin-top: 0.5rem;
+    border-radius: 2px;
+  }
+}
+
+h2 {
+  &::before {
+    content: '// ';
+    color: $vs-muted;
+    opacity: 0.5;
+  }
+}
+
+
+// ───────────────────────────────────────────────────────────────────────────
+// SPECIAL CONTENT MARKERS
+// ───────────────────────────────────────────────────────────────────────────
+
+// For marking redacted content
+.redacted {
+  background: $vs-void;
+  color: $vs-void;
+  padding: 0 0.5rem;
+  border-radius: 2px;
+  cursor: help;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 102, 68, 0.2);
+    color: $vs-orange;
+  }
+}
+
+// Corruption effect
+.corrupted {
+  position: relative;
+
+  &::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 2px;
+    text-shadow: -1px 0 $vs-cyan;
+    top: 0;
+    color: $vs-orange;
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0);
+    animation: glitch-anim 2s infinite linear alternate-reverse;
+  }
+}
+
+@keyframes glitch-anim {
+  0% { clip: rect(42px, 9999px, 44px, 0); }
+  5% { clip: rect(12px, 9999px, 59px, 0); }
+  10% { clip: rect(48px, 9999px, 29px, 0); }
+  15% { clip: rect(42px, 9999px, 73px, 0); }
+  20% { clip: rect(63px, 9999px, 27px, 0); }
+  25% { clip: rect(34px, 9999px, 55px, 0); }
+  30% { clip: rect(86px, 9999px, 73px, 0); }
+  35% { clip: rect(20px, 9999px, 20px, 0); }
+  40% { clip: rect(26px, 9999px, 60px, 0); }
+  45% { clip: rect(25px, 9999px, 66px, 0); }
+  50% { clip: rect(57px, 9999px, 98px, 0); }
+  55% { clip: rect(5px, 9999px, 46px, 0); }
+  60% { clip: rect(82px, 9999px, 31px, 0); }
+  65% { clip: rect(54px, 9999px, 27px, 0); }
+  70% { clip: rect(28px, 9999px, 99px, 0); }
+  75% { clip: rect(45px, 9999px, 69px, 0); }
+  80% { clip: rect(23px, 9999px, 85px, 0); }
+  85% { clip: rect(54px, 9999px, 84px, 0); }
+  90% { clip: rect(45px, 9999px, 47px, 0); }
+  95% { clip: rect(37px, 9999px, 20px, 0); }
+  100% { clip: rect(4px, 9999px, 91px, 0); }
+}
+
+// Signal lost indicator
+.signal-lost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: $vs-orange;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.8rem;
+
+  &::before {
+    content: '◉';
+    animation: blink 1s step-end infinite;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// MOBILE RESPONSIVE STYLES
+// ═══════════════════════════════════════════════════════════════════════════
+
+@media screen and (max-width: 768px) {
+  // Logo scaling
+  .void-sector-logo {
+    max-width: 90%;
+    margin: 1rem auto;
+  }
+
+  // Framed container adjustments
+  .framed {
+    padding: 1rem;
+    margin: 0 -0.5rem 1.5rem;
+
+    &::before,
+    &::after {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  // Dividers
+  .divider-circuit,
+  .divider-substrate {
+    max-width: 100%;
+    margin: 1rem auto;
+  }
+
+  // Badges - stack and smaller on mobile
+  .badge {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  // Tables - horizontal scroll wrapper
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+
+    th, td {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.85rem;
+    }
+  }
+
+  // Headers
+  h1::after {
+    width: 40px;
+    height: 2px;
+  }
+
+
+  // Blockquotes
+  blockquote {
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+
+    &::before {
+      font-size: 2rem;
+      top: -5px;
+      left: 5px;
+    }
+  }
+
+  // Page title brackets
+  .page-title {
+    &::before,
+    &::after {
+      width: 15px;
+      height: 15px;
+    }
+
+    &::before {
+      left: -10px;
+      top: -5px;
+    }
+
+    &::after {
+      right: -10px;
+      bottom: -5px;
+    }
+  }
+}
+
+// Portrait mode specific
+@media screen and (max-width: 480px) {
+  .void-sector-logo {
+    max-width: 95%;
+  }
+
+  .badge {
+    font-size: 0.6rem;
+    padding: 0.15rem 0.4rem;
+
+    &--classified,
+    &--leaked,
+    &--restricted,
+    &--missing {
+      // Ensure glow doesn't overflow
+      box-shadow: none;
+    }
+  }
+
+  // Reduce decorative elements on very small screens
+  .framed::before,
+  .framed::after {
+    width: 15px;
+    height: 15px;
+    border-width: 1px;
+  }
+
+  hr::before {
+    width: 6px;
+    height: 6px;
+  }
+
+  // Tighter table cells
+  table th,
+  table td {
+    padding: 0.4rem 0.5rem;
+    font-size: 0.8rem;
+  }
+}
+
+// Landscape mode on mobile
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .void-sector-logo {
+    max-width: 50%;
+    margin: 0.5rem auto;
+  }
+
+  .framed {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .divider-circuit,
+  .divider-substrate {
+    margin: 0.5rem auto;
+  }
+
+  blockquote {
+    margin: 0.75rem 0;
+    padding: 0.5rem 1rem;
+  }
+}
+
+// Tablet landscape
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .void-sector-logo {
+    max-width: 70%;
+  }
+
+  .divider-circuit,
+  .divider-substrate {
+    max-width: 500px;
+  }
+}

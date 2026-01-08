@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 60" width="800" height="60">
+  <defs>
+    <filter id="crystal-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="substrate-fade" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4a9eff;stop-opacity:0"/>
+      <stop offset="50%" style="stop-color:#4a9eff;stop-opacity:0.6"/>
+      <stop offset="100%" style="stop-color:#4a9eff;stop-opacity:0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background line -->
+  <line x1="0" y1="30" x2="800" y2="30" stroke="url(#substrate-fade)" stroke-width="1"/>
+
+  <!-- Central crystal cluster -->
+  <g transform="translate(400, 30)" filter="url(#crystal-glow)">
+    <!-- Main crystal -->
+    <polygon points="0,-25 -12,0 0,25 12,0" fill="#0a0f19" stroke="#4a9eff" stroke-width="1.5"/>
+    <polygon points="0,-25 -6,0 0,10" fill="none" stroke="#44ff88" stroke-width="0.5" opacity="0.6"/>
+
+    <!-- Left crystal -->
+    <polygon points="-30,-15 -42,0 -30,15 -18,0" fill="#0a0f19" stroke="#4a9eff" stroke-width="1" opacity="0.7" transform="scale(0.7)"/>
+
+    <!-- Right crystal -->
+    <polygon points="30,-15 18,0 30,15 42,0" fill="#0a0f19" stroke="#4a9eff" stroke-width="1" opacity="0.7" transform="scale(0.7)"/>
+
+    <!-- Tiny crystals -->
+    <polygon points="-50,-8 -56,0 -50,8 -44,0" fill="none" stroke="#4a9eff" stroke-width="0.5" opacity="0.4"/>
+    <polygon points="50,-8 44,0 50,8 56,0" fill="none" stroke="#4a9eff" stroke-width="0.5" opacity="0.4"/>
+  </g>
+
+  <!-- Extending lines with data -->
+  <g stroke="#4a9eff" stroke-width="1" opacity="0.4">
+    <line x1="50" y1="30" x2="300" y2="30"/>
+    <line x1="500" y1="30" x2="750" y2="30"/>
+  </g>
+
+  <!-- Terminal nodes -->
+  <g fill="#4a9eff" opacity="0.6">
+    <rect x="46" y="28" width="8" height="4" rx="1"/>
+    <rect x="746" y="28" width="8" height="4" rx="1"/>
+  </g>
+
+  <!-- Scattered particles -->
+  <g fill="#44ff88" opacity="0.3">
+    <circle cx="150" cy="25" r="1"/>
+    <circle cx="200" cy="35" r="1"/>
+    <circle cx="600" cy="25" r="1"/>
+    <circle cx="650" cy="35" r="1"/>
+  </g>
+</svg>

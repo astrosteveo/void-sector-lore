@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <!-- Glow filters -->
+    <filter id="cyan-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="green-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Glitch displacement -->
+    <filter id="glitch-offset">
+      <feOffset in="SourceGraphic" dx="2" dy="0" result="red"/>
+      <feOffset in="SourceGraphic" dx="-2" dy="0" result="cyan"/>
+      <feColorMatrix in="red" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.3 0" result="red-tinted"/>
+      <feColorMatrix in="cyan" type="matrix" values="0 0 0 0 0  0 1 1 0 0  0 0 1 0 0  0 0 0 0.3 0" result="cyan-tinted"/>
+      <feMerge>
+        <feMergeNode in="red-tinted"/>
+        <feMergeNode in="cyan-tinted"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Scan line pattern -->
+    <pattern id="scanlines" patternUnits="userSpaceOnUse" width="4" height="4">
+      <rect width="4" height="2" fill="rgba(0,0,0,0.15)"/>
+    </pattern>
+
+    <!-- Gradient for void effect -->
+    <linearGradient id="void-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4a9eff;stop-opacity:1"/>
+      <stop offset="50%" style="stop-color:#ddeeff;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#44ff88;stop-opacity:1"/>
+    </linearGradient>
+
+    <!-- Radial fade for "sector" text -->
+    <linearGradient id="sector-fade" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6688aa;stop-opacity:0.6"/>
+      <stop offset="50%" style="stop-color:#aabbcc;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#6688aa;stop-opacity:0.6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background (optional, transparent by default) -->
+  <rect width="800" height="200" fill="transparent"/>
+
+  <!-- Decorative corner brackets -->
+  <g stroke="#4a9eff" stroke-width="2" fill="none" opacity="0.6">
+    <!-- Top left -->
+    <path d="M 10,40 L 10,10 L 40,10"/>
+    <!-- Top right -->
+    <path d="M 760,10 L 790,10 L 790,40"/>
+    <!-- Bottom left -->
+    <path d="M 10,160 L 10,190 L 40,190"/>
+    <!-- Bottom right -->
+    <path d="M 760,190 L 790,190 L 790,160"/>
+  </g>
+
+  <!-- Main "VOID" text with glitch effect -->
+  <g filter="url(#glitch-offset)">
+    <text x="400" y="105"
+          font-family="JetBrains Mono, monospace"
+          font-size="100"
+          font-weight="700"
+          fill="#ddeeff"
+          text-anchor="middle"
+          letter-spacing="0.15em"
+          filter="url(#cyan-glow)">
+      VOID
+    </text>
+  </g>
+
+  <!-- "SECTOR" text below -->
+  <text x="400" y="160"
+        font-family="JetBrains Mono, monospace"
+        font-size="40"
+        font-weight="400"
+        fill="url(#sector-fade)"
+        text-anchor="middle"
+        letter-spacing="0.5em">
+    SECTOR
+  </text>
+
+  <!-- Decorative underline with circuit pattern -->
+  <g stroke="#4a9eff" stroke-width="1" fill="none" opacity="0.8">
+    <line x1="150" y1="175" x2="350" y2="175"/>
+    <line x1="450" y1="175" x2="650" y2="175"/>
+    <!-- Circuit nodes -->
+    <circle cx="150" cy="175" r="3" fill="#4a9eff"/>
+    <circle cx="350" cy="175" r="2" fill="#44ff88"/>
+    <circle cx="450" cy="175" r="2" fill="#44ff88"/>
+    <circle cx="650" cy="175" r="3" fill="#4a9eff"/>
+  </g>
+
+  <!-- Timestamp signature (03:47) -->
+  <text x="400" y="195"
+        font-family="JetBrains Mono, monospace"
+        font-size="12"
+        fill="#6688aa"
+        text-anchor="middle"
+        opacity="0.5">
+    03:47
+  </text>
+
+  <!-- Data fragments decoration -->
+  <g font-family="JetBrains Mono, monospace" font-size="8" fill="#4a9eff" opacity="0.3">
+    <text x="50" y="100">0x4F1D</text>
+    <text x="720" y="80">SIGNAL_LOST</text>
+    <text x="60" y="150">NULL</text>
+    <text x="700" y="140">ERROR</text>
+  </g>
+</svg>

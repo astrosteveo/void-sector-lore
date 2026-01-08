@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <filter id="corner-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Main corner bracket -->
+  <g stroke="#4a9eff" stroke-width="2" fill="none" filter="url(#corner-glow)">
+    <path d="M 5,35 L 5,5 L 35,5"/>
+  </g>
+
+  <!-- Secondary inner bracket -->
+  <g stroke="#44ff88" stroke-width="1" fill="none" opacity="0.5">
+    <path d="M 12,28 L 12,12 L 28,12"/>
+  </g>
+
+  <!-- Accent dot -->
+  <circle cx="5" cy="5" r="2" fill="#4a9eff"/>
+
+  <!-- Data lines -->
+  <g stroke="#4a9eff" stroke-width="0.5" opacity="0.3">
+    <line x1="40" y1="5" x2="60" y2="5"/>
+    <line x1="5" y1="40" x2="5" y2="60"/>
+  </g>
+
+  <!-- Circuit nodes -->
+  <circle cx="50" cy="5" r="1.5" fill="#4a9eff" opacity="0.4"/>
+  <circle cx="5" cy="50" r="1.5" fill="#4a9eff" opacity="0.4"/>
+</svg>
