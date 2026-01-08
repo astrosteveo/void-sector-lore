@@ -1,0 +1,105 @@
+.darkmode {
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  background: none;
+  border: none;
+  width: 20px;
+  height: 32px;
+  margin: 0;
+  text-align: inherit;
+  flex-shrink: 0;
+
+  & svg {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: calc(50% - 10px);
+    fill: var(--darkgray);
+    transition: opacity 0.1s ease;
+  }
+}
+
+:root[saved-theme="dark"] {
+  color-scheme: dark;
+}
+
+:root[saved-theme="light"] {
+  color-scheme: light;
+}
+
+:root[saved-theme="dark"] .darkmode {
+  & > .dayIcon {
+    display: none;
+  }
+  & > .nightIcon {
+    display: inline;
+  }
+}
+
+:root .darkmode {
+  & > .dayIcon {
+    display: inline;
+  }
+  & > .nightIcon {
+    display: none;
+  }
+}
+
+// Void Sector glitch effect
+.void-glitch {
+  animation: glitch-shake 0.1s linear infinite;
+}
+
+@keyframes glitch-shake {
+  0% { transform: translate(0); }
+  25% { transform: translate(-2px, 1px); }
+  50% { transform: translate(2px, -1px); }
+  75% { transform: translate(-1px, -2px); }
+  100% { transform: translate(1px, 2px); }
+}
+
+.glitch-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: glitch-flash 0.1s ease-out;
+}
+
+.glitch-text {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1.5rem;
+  color: #ff6644;
+  text-shadow:
+    2px 0 #4a9eff,
+    -2px 0 #44ff88,
+    0 0 20px #ff6644;
+  animation: glitch-text-flicker 0.15s ease-in-out infinite;
+  letter-spacing: 0.2em;
+}
+
+@keyframes glitch-flash {
+  0% { opacity: 0; background-color: rgba(255, 102, 68, 0.3); }
+  50% { opacity: 1; background-color: transparent; }
+  100% { opacity: 1; }
+}
+
+@keyframes glitch-text-flicker {
+  0%, 100% { opacity: 1; transform: translate(0); }
+  33% { opacity: 0.8; transform: translate(-3px, 1px); }
+  66% { opacity: 0.9; transform: translate(3px, -1px); }
+}
