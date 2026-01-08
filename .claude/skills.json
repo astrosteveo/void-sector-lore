@@ -1,0 +1,52 @@
+{
+  "skills": [
+    {
+      "name": "void-sector",
+      "title": "Void Sector Lore Writer",
+      "description": "Create compelling sci-fi horror lore for Void Sector digital garden with full Quartz integration",
+      "documentation": "void-sector-lore.md",
+      "icon": "📚",
+      "commands": [
+        {
+          "command": "void-sector",
+          "description": "Main lore writing skill for Void Sector"
+        },
+        {
+          "command": "void-character",
+          "description": "Generate a new character profile with connections"
+        },
+        {
+          "command": "void-location",
+          "description": "Create a new Void Sector location with incident history"
+        },
+        {
+          "command": "void-concept",
+          "description": "Develop a thematic concept or phenomenon"
+        },
+        {
+          "command": "void-incident",
+          "description": "Write a corporate incident report with leaked truth"
+        },
+        {
+          "command": "void-log",
+          "description": "Create a personal log showing psychological deterioration"
+        },
+        {
+          "command": "void-link",
+          "description": "Find and suggest cross-links between documents"
+        },
+        {
+          "command": "void-pattern",
+          "description": "Identify and develop recurring patterns in lore"
+        }
+      ],
+      "context": {
+        "framework": "quartz",
+        "universe": "void-sector",
+        "tone": "cosmic-horror",
+        "style": "fragmented-documents",
+        "tags": ["creative-writing", "lore", "sci-fi", "documentation"]
+      }
+    }
+  ]
+}
