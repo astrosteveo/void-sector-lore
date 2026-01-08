@@ -8,7 +8,7 @@ const PageTitle: QuartzComponent = ({ fileData, cfg, displayClass }: QuartzCompo
     <h2 class={classNames(displayClass, "page-title")}>
       <a href={baseDir} class="page-title-link">
         <img
-          src={`${baseDir}static/void-sector-logo-compact.svg`}
+          src={`${baseDir}/static/void-sector-logo-compact.svg`}
           alt="Void Sector"
           class="page-title-logo"
         />
