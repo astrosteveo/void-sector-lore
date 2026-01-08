@@ -25,6 +25,7 @@ import Flex from "./Flex"
 import ConditionalRender from "./ConditionalRender"
 import TerminalStatus from "./TerminalStatus"
 import TrulliBeacon from "./TrulliBeacon"
+import EmergencyReset from "./EmergencyReset"
 
 export {
   ArticleTitle,
@@ -54,4 +55,5 @@ export {
   ConditionalRender,
   TerminalStatus,
   TrulliBeacon,
+  EmergencyReset,
 }

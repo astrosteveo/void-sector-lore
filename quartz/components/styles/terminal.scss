@@ -480,12 +480,16 @@ $vs-void: #0a0a0f;
   .terminal-message {
     font-size: 1rem;
     letter-spacing: 0.1em;
+    padding: 0 1rem;
   }
 
   .terminal-count {
     font-size: 0.55rem;
     bottom: 45px;
     right: 10px;
+    max-width: calc(100vw - 80px);
+    text-align: right;
+    line-height: 1.3;
   }
 
   .hidden-watermark {
@@ -494,6 +498,11 @@ $vs-void: #0a0a0f;
 }
 
 @media screen and (max-width: 480px) {
+  .terminal-status {
+    font-size: 0.55rem;
+    padding: 0.25rem 0.4rem;
+  }
+
   .terminal-status-inner {
     gap: 0.3rem;
   }
@@ -504,6 +513,37 @@ $vs-void: #0a0a0f;
 
   .terminal-session {
     display: none;
+  }
+
+  .terminal-message {
+    font-size: 0.85rem;
+    padding: 0 0.5rem;
+  }
+
+  .terminal-count {
+    font-size: 0.5rem;
+    bottom: 42px;
+  }
+
+  .hidden-watermark {
+    font-size: 1.5rem;
+  }
+}
+
+// Landscape mode on mobile
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .terminal-status {
+    font-size: 0.55rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  .terminal-message {
+    font-size: 0.8rem;
+  }
+
+  .terminal-count {
+    bottom: 35px;
+    font-size: 0.5rem;
   }
 }
 

@@ -546,6 +546,11 @@ h2 {
     margin: 1rem auto;
   }
 
+  // Main content area - better bottom padding to avoid overlap with terminal
+  article {
+    padding-bottom: 80px !important;
+  }
+
   // Framed container adjustments
   .framed {
     padding: 1rem;
@@ -586,11 +591,22 @@ h2 {
   }
 
   // Headers
-  h1::after {
-    width: 40px;
-    height: 2px;
+  h1 {
+    font-size: 1.8rem;
+
+    &::after {
+      width: 40px;
+      height: 2px;
+    }
   }
 
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
 
   // Blockquotes
   blockquote {
@@ -628,6 +644,28 @@ h2 {
 @media screen and (max-width: 480px) {
   .void-sector-logo {
     max-width: 95%;
+  }
+
+  // Main content - extra padding for small screens
+  article {
+    padding-bottom: 90px !important;
+  }
+
+  // Typography adjustments
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+  }
+
+  p, li {
+    font-size: 0.95rem;
   }
 
   .badge {
@@ -671,6 +709,11 @@ h2 {
     margin: 0.5rem auto;
   }
 
+  // Better content spacing in landscape
+  article {
+    padding-bottom: 60px !important;
+  }
+
   .framed {
     padding: 0.75rem;
     margin-bottom: 1rem;
@@ -684,6 +727,18 @@ h2 {
   blockquote {
     margin: 0.75rem 0;
     padding: 0.5rem 1rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  h3 {
+    font-size: 1rem;
   }
 }
 
