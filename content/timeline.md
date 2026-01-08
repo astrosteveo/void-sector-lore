@@ -25,35 +25,49 @@ tags:
 
 ---
 
+## The Light Appears
+
+### 2026.01.06
+**[[concepts/trulli-beacon|First Detection of the Trulli Signal]]**
+- A research station in the outer solar system detects a faint transmission from an impossible location
+- The signal is already named in the detection logs: *Trulli*
+- No one can explain the origin of the name or the signal
+- The signal is described as "warm" and "close"—unusual terminology for astronomical observation
+- One technician's margin note, later redacted: *"It's like something small is curled up at the center of everything, keeping watch."*
+
+### 2089
+**Galactic Navigation Standardized**
+- The [[concepts/united-mining-guild|United Mining Guild]] establishes coordinate origin at 0, 0, 0
+- Origin point chosen to match the location of the Trulli signal—broadcasting continuously for 63 years
+- The beacon becomes NAV-000, the anchor of all human-charted space
+
+---
+
 ## The Incident Pattern Begins
 
 ### 2405
 
-```
-┌─────────┬────────────────────────────────────────┐
-│ 2405.06 │ ██ 2 incidents (sectors unknown)       │
-│ 2405.08 │ █ 1 incident                           │
-│ 2405.10 │ ███ 3 incidents                        │
-│ 2405.12 │ ██ 2 incidents                         │
-└─────────┴────────────────────────────────────────┘
-Total: 8 incidents
-```
+| Date | Incidents | Count |
+|------|-----------|-------|
+| 2405.06 | ██ | 2 incidents (sectors unknown) |
+| 2405.08 | █ | 1 incident |
+| 2405.10 | ███ | 3 incidents |
+| 2405.12 | ██ | 2 incidents |
+| **Total** | | **8 incidents** |
 
 ---
 
 ### 2406
 
-```
-┌─────────┬────────────────────────────────────────┐
-│ 2406.02 │ █ 1 incident                           │
-│ 2406.04 │ ███ 3 incidents                        │
-│ 2406.06 │ ██ 2 incidents                         │
-│ 2406.08 │ ██ 2 incidents (incl. Maven Cheung)    │
-│ 2406.10 │ █ 1 incident                           │
-│ 2406.12 │ ██ 2 incidents                         │
-└─────────┴────────────────────────────────────────┘
-Total: 11 incidents (19 cumulative)
-```
+| Date | Incidents | Count |
+|------|-----------|-------|
+| 2406.02 | █ | 1 incident |
+| 2406.04 | ███ | 3 incidents |
+| 2406.06 | ██ | 2 incidents |
+| 2406.08 | ██ | 2 incidents (incl. Maven Cheung) |
+| 2406.10 | █ | 1 incident |
+| 2406.12 | ██ | 2 incidents |
+| **Total** | | **11 incidents (19 cumulative)** |
 
 #### August 2406 - The Maven Cheung Incident
 

@@ -21,7 +21,9 @@ date: 2406-08-14
 | **Location** | Void Sector 19-Kappa |
 | **Ship** | Modified hauler-class *Claim Jumper* (registry CJ-7749) |
 | **Mission** | Solo extraction run, substrate seam (projected yield: 47kg) |
-| **Status** | [RECOVERED FROM DERELICT - 2407] |
+| **Status** | <span class="badge badge--recovered">Recovered From Derelict - 2407</span> |
+
+<img src="/static/divider-circuit.svg" alt="" class="divider-circuit" />
 
 ---
 
@@ -83,9 +85,13 @@ The hum's louder. Or maybe I'm just noticing it more.
 
 I've started talking to myself. Out loud. Just to hear a voice that isn't the hum.
 
-Last night I woke up and the clock said 03:47. I got up, made coffee, checked the drill. Sat back down. Looked at the clock again.
+Last night I woke up and the clock said **03:47**. I got up, made coffee, checked the drill. Sat back down. Looked at the clock again.
 
-03:47.
+<div style="text-align: center; font-size: 1.5rem; color: var(--vs-danger); margin: 1rem 0;">
+
+**03:47**
+
+</div>
 
 Same time. Exactly.
 
@@ -113,9 +119,13 @@ I wake up and I don't know which perspective was the dream.
 
 I saw my reflection in the viewport last night.
 
-It waved at me.
+<div class="framed" style="text-align: center; margin: 1.5rem 0;">
 
-I didn't wave back.
+*It waved at me.*
+
+*I didn't wave back.*
+
+</div>
 
 ---
 
@@ -315,6 +325,8 @@ I think I came back inside.
 
 ---
 
+<img src="/static/divider-substrate.svg" alt="" class="divider-substrate" />
+
 ### Day ??? - 2406.09.??
 
 How long have I been here?
@@ -333,9 +345,13 @@ Or tomorrow.
 
 I don't think time is moving the same direction for all of me.
 
+<div style="text-align: center; margin: 1.5rem 0;">
+<span class="signal-lost">TEMPORAL SYNC LOST</span>
+</div>
+
 ---
 
-### [FINAL ENTRY - TIMESTAMP CORRUPTED]
+### [FINAL ENTRY - <span class="corrupted" data-text="TIMESTAMP CORRUPTED">TIMESTAMP CORRUPTED</span>]
 
 I understand now.
 

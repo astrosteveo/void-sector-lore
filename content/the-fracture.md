@@ -19,15 +19,19 @@ date: 2408-01-01
 | **Estimated Occurrence** | ~13.7 billion years ago |
 | **Official Designation** | Primordial Expansion Event (PEE) |
 | **Common Name** | The Fracture |
-| **Status** | Unsolved Cosmological Anomaly |
+| **Status** | <span class="badge badge--classified">Unsolved Cosmological Anomaly</span> |
 
----
+<img src="/static/divider-substrate.svg" alt="" class="divider-substrate" />
 
 ## Abstract
 
+<div class="framed" style="text-align: center; margin: 2rem 0;">
+
 The universe did not begin with a bang.
 
-It began with a *wound*.
+It began with a ***wound***.
+
+</div>
 
 ---
 
@@ -104,7 +108,7 @@ Chemical analysis shows it's primarily carbon and silicon—but the molecular st
 
 It's geometry that shouldn't be stable. But it is.
 
----
+<img src="/static/divider-circuit.svg" alt="" class="divider-circuit" />
 
 ## The Whispers
 
@@ -202,11 +206,15 @@ And at that moment, space was still bleeding into being, torn from somewhere els
 
 —and left behind Fragments.
 
+<div class="framed" style="text-align: center; margin: 2rem 0;">
+
 *Shrapnel from the Big Bang.*
 
 *Evidence of the crime.*
 
----
+</div>
+
+<img src="/static/divider-substrate.svg" alt="" class="divider-substrate" />
 
 **[END DOCUMENT]**
 
